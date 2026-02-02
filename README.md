@@ -2,7 +2,7 @@
 
 Este proyecto es un pipeline de datos ETL (Extract, Transform, Load) diseñado específicamente para la generación de reportes de post venta. Automatiza la extracción de datos desde BigQuery, aplica transformaciones y formateo, y genera archivos Excel listos para trabajar.
 
-## 🛠️ Configuración del Entorno
+## Configuración del Entorno
 
 ### 1. Instalación de Dependencias
 
@@ -74,4 +74,4 @@ El sistema genera logs en dos ubicaciones:
 
 ## Licencia
 
-[Revisa la licencia antes de usar el archivo](./LICENSE)
+Revisa la [Licencia](./LICENSE) antes de usar el proyecto.

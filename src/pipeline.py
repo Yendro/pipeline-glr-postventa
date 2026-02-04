@@ -27,24 +27,7 @@ FORMATO_ENCABEZADO = {
 CATEGORIAS_FORMATO = {
     "fecha": {
         "columna": [
-            # Ingresos-GAIA
-            "fecha_ingreso", "fecha_creacion", "fecha_ultimo_ingreso", 
-
-            # EstadosCuenta-GAIA
-            "Fecha_Contrato", "Fecha_Firma_Contrato", "Fecha_Proximo_pago", "fecha_promesa",
-
-            # Ingresos-Condominios
-            "FECHA_INGRESO", "FECHA_REGISTRO",
-
-            # Ingresos-Condominios-BI
-            "FechaPago",
-
-            # EstadosCuenta-Condominios
-            # "Fecha_Proximo_pago",
-            "Fecha_ultimo_ingreso",
-            
-            # CarteraVencida-Condominios
-            "FECHA_NACIMIENTO", "FECHAPAGO",
+            "FechaCreacion", "FechaDeContrato", "FechaDeNacimiento", "FechaPago", "FechaFirmaDeContrato", "FechaIngreso", "FechaPromesa", "FechaProximoPago", "FechaRegistro", "FechaUltimoIngreso",
         ],
         "formato_excel": "DD/MM/YYYY",
     },
@@ -56,47 +39,13 @@ CATEGORIAS_FORMATO = {
     # },
     "moneda": {
         "columna": [
-            # Ingresos-GAIA
-            "Cantidad", "Gastos_gestion",
-
-            # EstadosCuenta-GAIA
-            "Precio_venta", "Total_cobrado", "Enganche_pagado", "Total_por_cobrar", "Mensualidad", "Total_Requerido", "Cobrado", "Acumulado_Vencido", "Monto_ultimo_ingreso", "Acumado_Vencido",
-
-            # Ingresos-Condominios
-            "MONTO_PAGADO", "SALDO_PENDIENTE_POR_APLICAR", "MONTO_CUOTA", "MONTO_RESERVA", "MONTO_FONDO",
-
-            # Ingresos-Condominios-BI
-            "Monto", "MontoCuota", "MontoReserva", "MontoFondo", "FondosFuturos",
-
-            # EstadosCuenta-Condominios
-            # "Total_por_cobrar", "Total_cobrado",,m
-            "Total_generado", "Saldo_vencido", "Saldo_pendiente_por_aplicar",
-            
-            # CarteraVencida-Condominios
-            "TOTAL_PAGO", "SALDO_VENCIDO",
+            "AcumuladoVencido", "Cobrado", "EnganchePagado", "FondosFuturos", "GastosMoratorios", "Mensualidad", "Monto", "MontoCuota", "MontoFondo", "MontoReserva", "MontoUltimoIngreso", "PrecioVenta", "SaldoPendientePorAplicar", "SaldoVencido", "TotalCobrado", "TotalDePago", "TotalGenerado", "TotalPorCobrar", "TotalRequerido",
         ],
         "formato_excel": '"$"#,##0.00',
     },
     "numero": {
         "columna": [
-            # Ingresos-GAIA
-            "id_venta", "id_ingreso",
-
-            # EstadosCuenta-GAIA
-            # "id_venta",
-            "dia_pago", "Meses_Financia", "Dias_Atrasado", "numero_pago",
-
-            # Ingresos-Condominios
-            "IDINGRESO", "IDCLIENTE", "NUMERO_CUENTA", "id_ingreso_dt",
-
-            # Ingresos-Condominios-BI
-            #"id_ingreso", "id_venta",
-
-            # EstadosCuenta-Condominios
-            "id_cliente", "Dias_atraso", "Dia_pago",
-            
-            # CarteraVencida-Condominios
-            "IDCLIENTE", "DIA_VENCIDO",
+            "id_cliente", "id_ingreso", "id_ingreso_dt", "id_venta", "DiasAtrasado", "DiaVencido", "DiaPago", "NumeroCuenta", "NumeroPago", "MesesDeFinanciamiento",
         ],
         "formato_excel": '0',
     },
@@ -108,28 +57,7 @@ CATEGORIAS_FORMATO = {
     # },
     "texto": {
         "columna": [
-            # Ingresos-GAIA
-            "id", "Marca", "Desarrollo", "Privada", "Etapa", "Unidad", "Folio", "Cliente", "STP", "Estatus", "forma_de_pago", "concepto", "flujo_concepto", "Banco", "Usuario_asignacion",
-
-            # EstadosCuenta-GAIA
-            # "id", "Marca", "Desarrollo", "Privada", "Etapa", "Unidad", "Cliente", "Estatus",
-            "Copropietario", "Asesor", "Sucursal", "Tipo", "Equipo", "telefono_celular", "correo_electronico", "CuentaBeneficiarioReal",
-
-            # Ingresos-Condominios
-            # "STP",
-            "DESARROLLO", "UNIDAD", "FOLIO", "CLIENTE", "BANCO", "FORMA_PAGO", "USUARIOS_REGISTRO", "STATUS", "SISTEMA",
-
-            # Ingresos-Condominios-BI
-            # "Marca", "Desarrollo", "Privada", "Etapa", "Unidad", "Cliente", "Banco",
-            "folio", "Usuario", "cuentaBeneficiario", "FormaPago",
-
-            # EstadosCuenta-Condominios
-            # "Marca", "Desarrollo", "Unidad", "Etapa", "Cliente",
-            "Id", "Correo", "Telefono", "Beneficiario_STP",
-            
-            # CarteraVencida-Condominios
-            # "DESARROLLO", "UNIDAD", "CLIENTE", "SISTEMA",
-            "CORREO", "TELEFONO", "nombre",
+            "Asesor", "Banco", "BeneficiarioSTP", "Concepto", "ConceptoIngreso", "ConceptoPago", "CorreoElectronico", "Copropietario", "Desarrollo", "Equipo", "Estatus", "Etapa", "Folio", "FormaPago", "Marca", "NombreCompletoCliente", "Privada", "Sucursal", "STATUS", "Telefono", "TelefonoCelular", "Tipo", "Unidad", "Usuario", "UsuarioRegistro", "id_desarrollo",
         ],
         "formato_excel": '@',
     },

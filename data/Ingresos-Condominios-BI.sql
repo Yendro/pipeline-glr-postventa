@@ -339,23 +339,23 @@ WITH IngresosCondominiosBI AS (
     LEFT JOIN temp_flujo_detallado AS tfd ON ti.id_ingreso = tfd.id_ingreso_dt
 )
 SELECT
-    id_ingreso,
     id_venta,
     Marca,
     Desarrollo,
     Privada,
     Etapa,
     Unidad,
-    folio,
-    Cliente, 
+    folio AS Folio,
+    Cliente AS NombreCompletoCliente, 
     Usuario,
-    CONCAT ("STP_", cuentaBeneficiario) AS cuentaBeneficiario,
+    CONCAT ("STP_", cuentaBeneficiario) AS BeneficiarioSTP,
     DATE(Fecha) AS FechaPago,
     Banco,
     FormaPago,
+    id_ingreso,
     Monto,
     CAST(
-        CASE 
+        CASE  
             WHEN MontoCuota IS NULL AND MontoReserva IS NULL AND MontoFondo IS NULL THEN 0
             ELSE COALESCE(MontoCuota, 0)
         END AS FLOAT64

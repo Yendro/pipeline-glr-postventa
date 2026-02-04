@@ -871,46 +871,46 @@ WITH Ventas3Version AS (
     )
 
     SELECT 
-            id_venta,
-            id,
-            Marca,
-            Desarrollo,
-            Privada,
-            Etapa,
-            Unidad,
-            REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(Cliente, 'á', 'a'), 'é', 'e'), 'í', 'i'), 'ó', 'o'), 'ú', 'u'), 'ñ', 'n') AS Cliente,
-            REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(Cliente, 'á', 'a'), 'é', 'e'), 'í', 'i'), 'ó', 'o'), 'ú', 'u'), 'ñ', 'n') AS Copropietario,
-            Asesor,
-            nv.Sucursal,
-            nv.Tipo,
-            nv.Equipo,
-            telefono_celular,
-            correo_electronico,   
-            CONCAT('stp_', CuentaBeneficiarioReal) AS CuentaBeneficiarioReal, 
-            Estatus,
-            Fecha_Contrato,
-            Fecha_Firma_Contrato,
-            CAST(precio_venta AS FLOAT64) AS Precio_venta, 
-            dia_pago,
-            CAST(Total_cobrado AS FLOAT64) AS Total_cobrado,
-            CAST(Enganche_pagado AS FLOAT64) AS Enganche_pagado,
-            CAST(total_por_cobrar AS FLOAT64) AS Total_por_cobrar,
-            Meses_Financia,
-            CAST(Mensualidad AS FLOAT64) AS Mensualidad,
-            CAST(Total_Requerido AS FLOAT64) AS Total_Requerido, -- ESTA SUMA SOLO SUMA LAS MENSUALIDADES FALTANTES NO CUENTA LOS CARGOS POR ADEUDO(SI QUIERO CONSIDERAR LAS PENALIZAICONES SUMAR 500 PESOS POR CADA PAGO ATRASADO(SALDO))
-            Dias_Atrasado,
-            fecha_ultimo_ingreso,
-            --Cobrado, -- DEPENDE DE LO TOTAL_QUERERIDO ENTONCES SI CAMBIAS TOTAL REQUERIDO , CAMBIA AQUI
-            CAST(monto_ultimo_ingreso_cobrado AS FLOAT64) AS Cobrado,
-            CAST(Acumado_Vencido AS FLOAT64) AS Acumado_Vencido,
-            numero_pago,
-            siguiente_fecha_pago AS Fecha_Proximo_pago,
-            CAST(monto_ultimo_ingreso AS FLOAT64) AS Monto_ultimo_ingreso,
-            fecha_promesa
+        id_venta,
+        id AS id_Desarrollo,
+        Marca,
+        Desarrollo,
+        Privada,
+        Etapa,
+        Unidad,
+        REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(Cliente, 'á', 'a'), 'é', 'e'), 'í', 'i'), 'ó', 'o'), 'ú', 'u'), 'ñ', 'n') AS NombreCompletoCliente,
+        REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(Cliente, 'á', 'a'), 'é', 'e'), 'í', 'i'), 'ó', 'o'), 'ú', 'u'), 'ñ', 'n') AS Copropietario,
+        Asesor,
+        nv.Sucursal,
+        nv.Tipo,
+        nv.Equipo,
+        telefono_celular AS TelefonoCelular,
+        correo_electronico AS CorreoElectronico,   
+        CONCAT('stp_', CuentaBeneficiarioReal) AS BeneficiarioSTP, 
+        Estatus,
+        Fecha_Contrato AS FechaDeContrato,
+        Fecha_Firma_Contrato AS FechaFirmaDeContrato,
+        CAST(precio_venta AS FLOAT64) AS PrecioVenta, 
+        dia_pago AS DiaPago,
+        CAST(Total_cobrado AS FLOAT64) AS TotalCobrado,
+        CAST(Enganche_pagado AS FLOAT64) AS EnganchePagado,
+        CAST(total_por_cobrar AS FLOAT64) AS TotalPorCobrar,
+        Meses_Financia AS MesesDeFinanciamiento,
+        CAST(Mensualidad AS FLOAT64) AS Mensualidad,
+        CAST(Total_Requerido AS FLOAT64) AS TotalRequerido, -- ESTA SUMA SOLO SUMA LAS MENSUALIDADES FALTANTES NO CUENTA LOS CARGOS POR ADEUDO(SI QUIERO CONSIDERAR LAS PENALIZAICONES SUMAR 500 PESOS POR CADA PAGO ATRASADO(SALDO))
+        Dias_Atrasado AS DiasAtrasado,
+        fecha_ultimo_ingreso AS FechaUltimoIngreso,
+        --Cobrado, -- DEPENDE DE LO TOTAL_QUERERIDO ENTONCES SI CAMBIAS TOTAL REQUERIDO , CAMBIA AQUI
+        CAST(monto_ultimo_ingreso_cobrado AS FLOAT64) AS Cobrado,
+        CAST(Acumado_Vencido AS FLOAT64) AS AcumuladoVencido,
+        numero_pago AS NumeroPago,
+        siguiente_fecha_pago AS FechaProximoPago,
+        CAST(monto_ultimo_ingreso AS FLOAT64) AS MontoUltimoIngreso,
+        fecha_promesa AS FechaPromesa
     FROM VentasFinal AS v 
     LEFT JOIN `Dimensiones.NombresVendedores` AS nv ON v.Asesor = nv.Vendedor
 )
 SELECT 
     *
 FROM Ventas3Version
-GROUP BY id_venta, id, Marca, Desarrollo, Privada, Etapa, Unidad, Cliente, Copropietario, Asesor, Sucursal, Tipo, Equipo, telefono_celular, correo_electronico,  CuentaBeneficiarioReal,  Estatus, Fecha_Contrato, Fecha_Firma_Contrato, precio_venta,   dia_pago, Total_cobrado, Enganche_pagado, total_por_cobrar, Meses_Financia, Mensualidad, Total_Requerido, Dias_Atrasado, fecha_ultimo_ingreso, Cobrado, Acumado_Vencido, numero_pago, Fecha_Proximo_pago, monto_ultimo_ingreso, fecha_promesa
+GROUP BY id_venta, id_Desarrollo, Marca, Desarrollo, Privada, Etapa, Unidad, NombreCompletoCliente, Copropietario, Asesor, Sucursal, Tipo, Equipo, TelefonoCelular, CorreoElectronico,  BeneficiarioSTP,  Estatus, FechaDeContrato, FechaFirmaDeContrato, PrecioVenta,   DiaPago, TotalCobrado, EnganchePagado, TotalPorCobrar, MesesDeFinanciamiento, Mensualidad, TotalRequerido, DiasAtrasado, FechaUltimoIngreso, Cobrado, AcumuladoVencido, NumeroPago, FechaProximoPago, MontoUltimoIngreso, FechaPromesa

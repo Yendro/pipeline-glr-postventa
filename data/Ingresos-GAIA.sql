@@ -1222,7 +1222,7 @@ WITH VENTASCOMPLETAS AS (
 )
 SELECT
     id_venta,
-    id,
+    id AS id_Desarrollo,
     Marca,
     Desarrollo,
     Privada,
@@ -1230,19 +1230,19 @@ SELECT
     Unidad,
     folio_seguimiento AS Folio,
     REPLACE (REPLACE (REPLACE (REPLACE (REPLACE (REPLACE (Cliente, 'á', 'a'), 'é', 'e'), 'í', 'i'), 'ó', 'o'), 'ú', 'u'), 'ñ', 'n'
-    ) AS Cliente,
-    CONCAT ('STP_', referencia_banco) AS STP,
+    ) AS NombreCompletoCliente,
+    CONCAT ('STP_', referencia_banco) AS BeneficiarioSTP,
     Estatus,
     id_ingreso,
-    fecha_ingreso,
-    fecha_creacion,
-    CAST(Cantidad AS FLOAT64) AS Cantidad,
-    CAST(Gastos_gestion AS FLOAT64) AS Gastos_gestion,
-    forma_de_pago,
-    concepto,
-    flujo_concepto,
+    fecha_ingreso AS FechaIngreso,
+    fecha_creacion AS FechaCreacion,
+    CAST(Cantidad AS FLOAT64) AS Monto,
+    CAST(Gastos_gestion AS FLOAT64) AS GastosMoratorios,
+    forma_de_pago AS FormaPago,
+    concepto AS ConceptoPago,
+    flujo_concepto AS ConceptoIngreso,
     nombre_banco AS Banco,
-    Usuario_asignacion
+    Usuario_asignacion AS UsuarioRegistro
 FROM VENTASCOMPLETAS
 WHERE Cliente NOT LIKE '%Prueba%'
     AND Desarrollo NOT IN (
@@ -1268,7 +1268,7 @@ GROUP BY
     Unidad,
     Folio,
     Cliente,
-    STP,
+    BeneficiarioSTP,
     Estatus,
     id_ingreso,
     fecha_ingreso,

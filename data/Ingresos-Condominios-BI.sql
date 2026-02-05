@@ -94,6 +94,7 @@ WITH IngresosCondominiosBI AS (
             NULLIF(fecha_comprobante, '0000-00-00') AS fecha_comprobante,
             nombre AS FormaPago,
             cuentaBeneficiario,
+            SALDOPENDIENTE_POR_APLICAR
         FROM EXTERNAL_QUERY("terraviva-439415.us.Condo", """
             SELECT
                 i.id_ingreso,
@@ -116,11 +117,13 @@ WITH IngresosCondominiosBI AS (
                 i.comprobante,
                 b.nombre_banco,
                 fp.nombre,
-                stp.cuentaBeneficiario
+                stp.cuentaBeneficiario,
+                fis.SALDOPENDIENTE_POR_APLICAR
             FROM ingreso AS i
             LEFT JOIN banco AS b ON i.id_banco = b.id_banco
             LEFT JOIN forma_pago AS fp ON i.id_forma_pago = fp.id_forma_pago
             LEFT JOIN stp_bitacora AS stp ON i.id_ingreso = stp.id_ingreso
+            LEFT JOIN flujo_ingresos_sh AS fis ON i.id_ingreso = fis.IDINGRESO
             WHERE i.status = 1
         """)
     ),
@@ -327,6 +330,7 @@ WITH IngresosCondominiosBI AS (
         ti.Banco,
         ti.FormaPago,
         ti.Monto,
+        ti.SALDOPENDIENTE_POR_APLICAR,
         tfd.MONTO_CUOTA AS MontoCuota,
         tfd.MONTO_RESERVA AS MontoReserva,
         tfd.MONTO_FONDO AS MontoFondo
@@ -347,7 +351,7 @@ SELECT
     Unidad,
     folio AS Folio,
     Cliente AS NombreCompletoCliente, 
-    Usuario,
+    Usuario AS UsuarioRegistro,
     CONCAT ("STP_", cuentaBeneficiario) AS BeneficiarioSTP,
     DATE(Fecha) AS FechaPago,
     Banco,
@@ -378,7 +382,8 @@ SELECT
             WHEN MontoCuota IS NULL AND MontoReserva IS NULL AND MontoFondo IS NULL THEN Monto
             ELSE 0
         END AS FLOAT64
-    ) AS FondosFuturos
+    ) AS FondosFuturos,
+    SALDOPENDIENTE_POR_APLICAR AS SaldoPendientePorAplicar
 FROM IngresosCondominiosBI
 WHERE Desarrollo IS NOT NULL
     AND Desarrollo != 'Demo'

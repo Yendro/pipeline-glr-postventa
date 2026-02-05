@@ -57,7 +57,7 @@ CATEGORIAS_FORMATO = {
     # },
     "texto": {
         "columna": [
-            "Asesor", "Banco", "BeneficiarioSTP", "Concepto", "ConceptoIngreso", "ConceptoPago", "CorreoElectronico", "Copropietario", "Desarrollo", "Equipo", "Estatus", "Etapa", "Folio", "FormaPago", "Marca", "NombreCompletoCliente", "Privada", "Sucursal", "STATUS", "Telefono", "TelefonoCelular", "Tipo", "Unidad", "Usuario", "UsuarioRegistro", "id_desarrollo",
+            "Asesor", "Banco", "BeneficiarioSTP", "Concepto", "ConceptoIngreso", "ConceptoPago", "CorreoElectronico", "Copropietario", "Desarrollo", "Equipo", "Estatus", "Etapa", "Folio", "FormaPago", "Marca", "NombreCompletoCliente", "Privada", "Sucursal", "STATUS", "Telefono", "TelefonoCelular", "Tipo", "Unidad", "UsuarioRegistro", "id_desarrollo",
         ],
         "formato_excel": '@',
     },

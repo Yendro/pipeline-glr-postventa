@@ -12,6 +12,12 @@ En la terminal ejecutar:
 pip install -r requirements.txt
 ```
 
+Usando uv:
+
+```bash
+uv pip install -r requirements.txt
+```
+
 ### 2. Configuración de Variables de Entorno en Windows
 
 Crea un archivo llamado `.env` en la raíz del proyecto
@@ -35,6 +41,17 @@ proyecto/
 ├── logs.log                  # Archivo de logs
 ├── main.py                   # Punto de entrada
 └── requirements.txt          # Dependencias
+```
+
+### 4. Crear un ejecutable de la pipeline
+
+Se puede crear un archivo `.bat` ejecutable de la pipeline para programar su ejecución.
+
+```bat
+@echo off
+cd /d C:\ruta\del\proyecto\pipeline-glr-postventa
+call .venv\Scripts\activate.bat
+python main.py
 ```
 
 ## Añadir nuevos archivos SQL

@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 # Estilado para encabezados
 FORMATO_ENCABEZADO = {
     "fill": PatternFill(start_color="0070C0", end_color="0070C0", fill_type="solid"),
-    "font": Font(bold=True, color="FFFFFF", size=12),
+    "font": Font(bold=True, color="FFFFFF", size=12, name='Aptos Narrow'),
     "alignment": Alignment(horizontal="center", vertical="center", wrap_text=True),
     "border": Border(
         left=Side(style='thin'),
@@ -153,6 +153,11 @@ class FormatoExcel:
                     (len(str(cell.value)) for cell in column_cells if cell.value),
                     default=0
                 )
+                # Calcular longitud máxima incluyendo el encabezado
+                max_length_data = max((len(str(cell.value)) for cell in column_cells if cell.value), default=0)
+                header_cell = worksheet.cell(row=1, column=col)
+                header_length = len(str(header_cell.value)) if header_cell.value else 0
+                max_length = max(max_length_data, header_length)
                 adjusted_width = min(50, max(8, (max_length + 2) * 1.1))
                 worksheet.column_dimensions[column_letter].width = adjusted_width
             
@@ -160,7 +165,7 @@ class FormatoExcel:
             columnas_formateadas = 0
             total_columnas = 0
             
-            font_data = Font(size=12)
+            font_data = Font(name='Aptos Narrow', size=12)
             alignment_data = Alignment(horizontal='left', vertical='center')
 
             for col in range(1, worksheet.max_column + 1):

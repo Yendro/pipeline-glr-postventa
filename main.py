@@ -38,6 +38,16 @@ def main() -> bool:
             for nombre, archivo in resultados.items():
                 logger.info(f"  • {archivo.name}")
             logger.info(f"Total: {len(resultados)} archivos generados")
+            
+            # Preguntar si se desea enviar el correo
+            respuesta = input("\n¿Desea enviar los reportes por correo? (Y/N): ").strip().upper()
+            if respuesta == 'Y':
+                from src.email_sender import enviar_correo
+                archivos = list(resultados.values())
+                if enviar_correo(archivos):
+                    logger.info("Correo enviado correctamente")
+                else:
+                    logger.error("No se pudo enviar el correo")
             return True
         else:
             logger.error("✗ ERROR: No se generaron archivos")

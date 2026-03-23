@@ -3,6 +3,7 @@ import logging
 from src.bigquery_client import BigQueryClient
 from src.pipeline import procesar_bigquery_dataframe
 from src.config import configurar_logger
+from src.email_sender import enviar_correo
 
 logger = logging.getLogger(__name__)
 
@@ -39,15 +40,12 @@ def main() -> bool:
                 logger.info(f"  • {archivo.name}")
             logger.info(f"Total: {len(resultados)} archivos generados")
             
-            # Preguntar si se desea enviar el correo
-            respuesta = input("\n¿Desea enviar los reportes por correo? (Y/N): ").strip().upper()
-            if respuesta == 'Y':
-                from src.email_sender import enviar_correo
-                archivos = list(resultados.values())
-                if enviar_correo(archivos):
-                    logger.info("Correo enviado correctamente")
-                else:
-                    logger.error("No se pudo enviar el correo")
+            # Enviar archivos por correo
+            archivos = list(resultados.values())
+            if enviar_correo(archivos):
+                logger.info("Correo enviado correctamente")
+            else:
+                logger.error("No se pudo enviar el correo")
             return True
         else:
             logger.error("✗ ERROR: No se generaron archivos")

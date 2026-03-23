@@ -13,6 +13,20 @@ DATA_DIR = BASE_DIR / 'data'
 REPORTS_DIR = BASE_DIR / 'reports'
 LOG_FILE = BASE_DIR / 'logs.log'
 
+# Configuración de correo
+EMAIL_SERVER = os.getenv('EMAIL_SERVER')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT'))
+EMAIL_USER = os.getenv('EMAIL_USER')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL_RECIPIENTS = [email.strip() for email in os.getenv('EMAIL_RECIPIENTS').split(',') if email.strip()]
+EMAIL_CC = [email.strip() for email in os.getenv('EMAIL_CC').split(',') if email.strip()]
+EMAIL_SUBJECT = os.getenv('EMAIL_SUBJECT')
+EMAIL_BODY = os.getenv('EMAIL_BODY')
+
+# Configuración de firma
+EMAIL_LOGO_PATH = os.getenv('EMAIL_LOGO_PATH')
+EMAIL_SIGNATURE_PATH = BASE_DIR / "templates/firma.html" # HTML completo de la firma
+
 # Configuración BigQuery
 BIGQUERY_CREDENTIALS_PATH = Path(os.getenv('BIGQUERY_CREDENTIALS_PATH'))
 PROJECT_ID = os.getenv('BIGQUERY_PROJECT_ID')

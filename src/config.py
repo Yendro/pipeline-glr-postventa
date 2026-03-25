@@ -25,7 +25,7 @@ EMAIL_BODY = os.getenv('EMAIL_BODY')
 
 # Configuración de firma
 EMAIL_LOGO_PATH = os.getenv('EMAIL_LOGO_PATH')
-EMAIL_SIGNATURE_PATH = BASE_DIR / "templates/firma.html" # HTML completo de la firma
+EMAIL_SIGNATURE_PATH = os.getenv('EMAIL_SIGNATURE_PATH') # HTML completo de la firma
 
 # Configuración BigQuery
 BIGQUERY_CREDENTIALS_PATH = Path(os.getenv('BIGQUERY_CREDENTIALS_PATH'))

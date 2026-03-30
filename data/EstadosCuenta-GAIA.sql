@@ -907,8 +907,10 @@ WITH Ventas3Version AS (
         siguiente_fecha_pago AS FechaProximoPago,
         CAST(monto_ultimo_ingreso AS FLOAT64) AS MontoUltimoIngreso,
         fecha_promesa AS FechaPromesa
-    FROM VentasFinal AS v 
+    FROM VentasFinal AS v
     LEFT JOIN `Dimensiones.NombresVendedores` AS nv ON v.Asesor = nv.Vendedor
+        AND DATE(v.Fecha_Firma_Contrato) >= IFNULL(nv.FechaInicio, DATE '1900-01-01')
+        AND DATE(v.Fecha_Firma_Contrato) < IFNULL(nv.FechaFin, DATE '9999-12-31')
 )
 SELECT 
     *

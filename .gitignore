@@ -6,10 +6,7 @@
 # Build
 reports
 logs.log
-script.bat
-
-# Logs
-transformacion_errores.log
+*.bat
 
 # Cache
 **__pycache__

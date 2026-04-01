@@ -1,8 +1,3 @@
--- Feat 12/11/2025: Se agrego la fecha de cracion de la tabla de ingresos.
--- Refactor 16//11/2025: Se agrego la etapa al id_desarrollo para los desarrollos de puerto telchac.
--- Feat 08/01/2026: Se agrego el desgloose de ingreso por flujo_concepto
--- Feat 12/01/2026: Se agrgeo la columna de  Gastos_gestion(ingresos moratorios) y el usuario que aplico el ingreso no identificado
-
 WITH VENTASCOMPLETAS AS (
     ( -- Terraviva
         WITH temp_nombres_asesor AS (
@@ -1256,8 +1251,8 @@ WHERE Cliente NOT LIKE '%Prueba%'
     AND Cliente NOT LIKE '%Manivela%'
     AND Cliente NOT LIKE '%Demo%'
     AND Cliente NOT LIKE '%Direccion%'
-    AND EXTRACT(YEAR FROM fecha_ingreso) = EXTRACT(YEAR FROM CURRENT_DATE())
-    AND EXTRACT(MONTH FROM fecha_ingreso) = EXTRACT(MONTH FROM CURRENT_DATE())
+    AND EXTRACT(YEAR FROM fecha_ingreso) = EXTRACT(YEAR FROM CURRENT_DATE("America/Merida"))
+    AND EXTRACT(MONTH FROM fecha_ingreso) = EXTRACT(MONTH FROM CURRENT_DATE("America/Merida"))
 GROUP BY
     id_venta,
     id,

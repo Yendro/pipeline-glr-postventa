@@ -24,5 +24,5 @@ WITH IngresosCondominios AS (
   FROM `terraviva-439415.sheets_condominios.sheets_flujo_ingresos`
 )
 SELECT * FROM IngresosCondominios
-WHERE EXTRACT(YEAR FROM FechaIngreso) = EXTRACT(YEAR FROM CURRENT_DATE())
-  AND EXTRACT(MONTH FROM FechaIngreso) = EXTRACT(MONTH FROM CURRENT_DATE())
+WHERE EXTRACT(YEAR FROM FechaIngreso) = EXTRACT(YEAR FROM CURRENT_DATE("America/Merida"))
+  AND EXTRACT(MONTH FROM FechaIngreso) = EXTRACT(MONTH FROM CURRENT_DATE("America/Merida"))
